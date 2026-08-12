@@ -5,8 +5,10 @@ Computer Information Systems Graduate passionate about designing systems that so
 ## 🔧 Technical Skills
 - System Analysis & Design
 - Database Design (MySQL)
-- Backend Development (PHP / Laravel / Blade)
+- Backend Development (PHP)
 - HTML, CSS, JavaScript
+- Data Visulization ( Power Bi & Excel )
+- Data Analysis( MySQL , Python & Excel )
 - IT Support & Troubleshooting
 
 ## 📌 Featured Projects
