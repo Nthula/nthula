@@ -1,4 +1,3 @@
-/* ============================================================
 
 /* ============================================================
    OLORATO NTHULA — HERO SECTION
@@ -32,5 +31,30 @@ document.addEventListener('DOMContentLoaded', () => {
       target.focus({ preventScroll: true });
     });
   });
-});
  
+  // Reveal the About section as it scrolls into view — a single
+  // orchestrated moment, not a per-card scroll effect.
+  // Reveal the About section as it scrolls into view — a single
+  // orchestrated moment, not a per-card scroll effect.
+  const about = document.querySelector('.about');
+ 
+  if (about) {
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+      about.classList.add('is-visible');
+    } else {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              about.classList.add('is-visible');
+              observer.unobserve(about);
+            }
+          });
+        },
+        { threshold: 0.2 }
+      );
+ 
+      observer.observe(about);
+    }
+  }
+});
