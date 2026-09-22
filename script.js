@@ -1,4 +1,3 @@
-
 /* ============================================================
    OLORATO NTHULA — HERO SECTION
    Smooth scroll behaviour for CTA buttons
@@ -32,29 +31,29 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
  
-  // Reveal the About section as it scrolls into view — a single
-  // orchestrated moment, not a per-card scroll effect.
-  // Reveal the About section as it scrolls into view — a single
-  // orchestrated moment, not a per-card scroll effect.
-  const about = document.querySelector('.about');
+  // Reveal each section as it scrolls into view — one orchestrated
+  // moment per section, not a per-card scroll effect.
+  const revealSections = document.querySelectorAll('.about, .experience');
  
-  if (about) {
+  revealSections.forEach((section) => {
     if (prefersReducedMotion || !('IntersectionObserver' in window)) {
-      about.classList.add('is-visible');
-    } else {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              about.classList.add('is-visible');
-              observer.unobserve(about);
-            }
-          });
-        },
-        { threshold: 0.2 }
-      );
- 
-      observer.observe(about);
+      section.classList.add('is-visible');
+      return;
     }
-  }
+ 
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            section.classList.add('is-visible');
+            observer.unobserve(section);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+ 
+    observer.observe(section);
+  });
 });
+ 

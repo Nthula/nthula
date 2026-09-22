@@ -1,19 +1,19 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Olorato Nthula — Information Systems Professional</title>
+<meta name="description" content="Portfolio of Olorato Nthula, an Information Systems graduate focused on Business Analysis, Systems Analysis, IT Support, and Data.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
- 
+
 <section class="hero" id="hero">
- 
+
   <!-- Background layer -->
   <div class="hero__bg" aria-hidden="true">
     <div class="hero__grid"></div>
@@ -21,25 +21,25 @@
     <div class="hero__glow hero__glow--b"></div>
     <div class="hero__glow hero__glow--c"></div>
   </div>
- 
+
   <div class="hero__inner">
- 
+
     <!-- LEFT: Content -->
     <div class="hero__content">
- 
+
       <p class="hero__eyebrow">Information Systems Professional</p>
- 
+
       <h1 class="hero__headline">
         Where business problems meet working systems.
       </h1>
- 
+
       <p class="hero__subheadline">
         I'm Olorato Nthula, an Information Systems graduate from the University of Botswana
         with hands-on IT support experience at the Bank of Botswana. I work at the point
         where business needs, data, and technology meet — analysing problems, then
         building or supporting the systems that solve them.
       </p>
- 
+
       <div class="hero__actions">
         <a href="#projects" class="btn btn--primary" data-scroll="projects">
           <span>View my work</span>
@@ -48,7 +48,7 @@
           <span>Get in touch</span>
         </a>
       </div>
- 
+
       <p class="hero__tags">
         <span>Systems Analysis</span>
         <span aria-hidden="true" class="hero__tag-dot">•</span>
@@ -58,25 +58,25 @@
         <span aria-hidden="true" class="hero__tag-dot">•</span>
         <span>Data</span>
       </p>
- 
+
     </div>
- 
+
     <!-- RIGHT: Visual composition -->
     <div class="hero__visual" aria-hidden="true">
- 
+
       <svg class="hero__flow" viewBox="0 0 480 560" fill="none" xmlns="http://www.w3.org/2000/svg">
         <!-- connecting spine -->
         <path id="flowPath" class="flow-path"
           d="M240 40 C 120 110, 360 170, 240 240 C 120 310, 360 370, 240 440 C 160 480, 300 500, 240 520"
           stroke="url(#pathGradient)" stroke-width="2" stroke-linecap="round" fill="none" />
- 
+
         <!-- travelling pulse -->
         <circle class="flow-pulse" r="4" fill="#FFB648">
           <animateMotion dur="7s" repeatCount="indefinite" rotate="auto">
             <mpath href="#flowPath" />
           </animateMotion>
         </circle>
- 
+
         <defs>
           <linearGradient id="pathGradient" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0" stop-color="#9B6BFF" stop-opacity="0.5" />
@@ -85,7 +85,7 @@
             <stop offset="1" stop-color="#FFB648" stop-opacity="0.45" />
           </linearGradient>
         </defs>
- 
+
         <!-- nodes, each carrying its stage's accent color -->
         <g class="flow-node" style="--delay:0s">
           <circle cx="240" cy="40" r="5" class="flow-node__dot flow-node__dot--1" />
@@ -100,28 +100,28 @@
           <circle cx="240" cy="520" r="4" class="flow-node__dot flow-node__dot--4" />
         </g>
       </svg>
- 
+
       <!-- floating stage cards, positioned along the spine -->
       <div class="stage-card stage-card--1">
         <span class="stage-card__index">Business</span>
         <span class="stage-card__label">Understanding the problem</span>
       </div>
- 
+
       <div class="stage-card stage-card--2">
         <span class="stage-card__index">Data</span>
         <span class="stage-card__label">SQL · Power BI · Excel</span>
       </div>
- 
+
       <div class="stage-card stage-card--3">
         <span class="stage-card__index">Systems</span>
         <span class="stage-card__label">Design &amp; analysis</span>
       </div>
- 
+
       <div class="stage-card stage-card--4">
         <span class="stage-card__index">Solutions</span>
         <span class="stage-card__label">Tools people can rely on</span>
       </div>
- 
+
       <!-- small dashboard panel, floats independently for depth -->
       <div class="panel">
         <div class="panel__head">
@@ -137,37 +137,40 @@
         </div>
         <div class="panel__foot">Reports resolved this week</div>
       </div>
- 
+
     </div>
- 
+
   </div>
 </section>
 
+<!-- ============================================================
+     ABOUT ME
+     ============================================================ -->
 <section class="about" id="about">
- 
+
   <div class="about__bg" aria-hidden="true">
     <div class="about__grid"></div>
     <div class="about__glow"></div>
   </div>
- 
+
   <div class="about__inner">
- 
-    <div class="about__intro">
+
+    <div class="section-intro">
       <p class="section-eyebrow">About</p>
       <h2 class="section-heading">From coursework to a live support desk.</h2>
     </div>
- 
+
     <p class="about__thesis">
       Between a business problem and a working system, there's usually a
       database, a process, and someone who has to use it every day — that's
       the part I'm interested in.
     </p>
- 
+
     <div class="about__grid-layout">
- 
+
       <!-- Narrative, broken into short blocks paired with proof points -->
       <div class="about__story">
- 
+
         <div class="story-block">
           <p>
             Information Systems sits between business and technology, which is
@@ -181,7 +184,7 @@
             <span class="stat-chip__label">GPA · BIS, 2025</span>
           </div>
         </div>
- 
+
         <div class="story-block">
           <p>
             That thinking got tested on attachment as an IT Support
@@ -196,7 +199,7 @@
             <span class="stat-chip__label">Jun–Aug 2024 attachment</span>
           </div>
         </div>
- 
+
         <div class="story-block">
           <p>
             For my final-year project I built an Online Fault Reporting
@@ -210,30 +213,30 @@
             <span class="stat-chip__label">Final-year project, 2025</span>
           </div>
         </div>
- 
+
         <p class="about__closing">
           Now I'm working toward Business and Systems Analysis, pairing that
           support and project experience with SQL, Power BI, and Excel.
         </p>
       </div>
- 
+
       <!-- Snapshot panel, as a tile grid -->
       <aside class="snapshot" aria-label="Professional snapshot">
         <h3 class="snapshot__heading">At a glance</h3>
- 
+
         <div class="snapshot__tiles">
           <div class="snapshot__tile snapshot__tile--1">
             <span class="snapshot__tile-label">Education</span>
             <span class="snapshot__tile-value">Bachelor of Information Systems</span>
             <span class="snapshot__tile-sub">University of Botswana, 2025</span>
           </div>
- 
+
           <div class="snapshot__tile snapshot__tile--2">
             <span class="snapshot__tile-label">Focus</span>
             <span class="snapshot__tile-value">Business &amp; Systems Analysis</span>
             <span class="snapshot__tile-sub">IT Support · Data &amp; Technology</span>
           </div>
- 
+
           <div class="snapshot__tile snapshot__tile--3">
             <span class="snapshot__tile-label">Tools</span>
             <ul class="snapshot__chips">
@@ -244,7 +247,7 @@
               <li>MS Office</li>
             </ul>
           </div>
- 
+
           <div class="snapshot__tile snapshot__tile--4">
             <span class="snapshot__tile-label">Currently</span>
             <span class="snapshot__tile-value">Building analytical &amp; systems-analysis skills</span>
@@ -252,9 +255,9 @@
           </div>
         </div>
       </aside>
- 
+
     </div>
- 
+
     <!-- Professional journey -->
     <div class="journey-wrap">
       <p class="journey-wrap__label">How it's connected so far</p>
@@ -281,10 +284,153 @@
         </li>
       </ol>
     </div>
- 
+
   </div>
 </section>
- 
+
+<!-- ============================================================
+     EXPERIENCE / TIMELINE
+     ============================================================ -->
+<section class="experience" id="experience">
+
+  <div class="experience__bg" aria-hidden="true">
+    <div class="experience__grid"></div>
+  </div>
+
+  <div class="experience__inner">
+
+    <div class="section-intro">
+      <p class="section-eyebrow">Experience</p>
+      <h2 class="section-heading">How the coursework, attachment, and self-study add up.</h2>
+    </div>
+
+    <p class="experience__lede">
+      A short professional history so far — academic foundation, one live
+      attachment inside IT support, a bit of self-directed learning, and the
+      direction it's all pointing toward.
+    </p>
+
+    <div class="timeline">
+      <ol class="timeline__list">
+
+        <!-- 1. Academic Foundation -->
+        <li class="timeline__item timeline__item--1">
+          <div class="timeline__marker"><span class="timeline__dot"></span></div>
+          <div class="timeline__card">
+            <div class="timeline__meta">
+              <span class="timeline__type">Academic Foundation</span>
+              <span class="timeline__period">Completed 2025</span>
+            </div>
+            <h3 class="timeline__org">University of Botswana</h3>
+            <p class="timeline__role">Bachelor of Information Systems · Computer Information Systems</p>
+            <p class="timeline__desc">
+              My degree paired technical modules — databases, web
+              technologies, programming — with ones built around business and
+              organizational context, like business intelligence and
+              information systems management. Systems Analysis &amp; Design in
+              particular shaped how I approach a problem: understand the
+              process first, then work out what the system needs to do.
+            </p>
+            <ul class="timeline__bullets">
+              <li>Database Management Systems</li>
+              <li>Systems Analysis &amp; Design</li>
+              <li>Business Intelligence</li>
+              <li>Information Systems Management</li>
+            </ul>
+          </div>
+        </li>
+
+        <!-- 2. Practical ICT Exposure -->
+        <li class="timeline__item timeline__item--2">
+          <div class="timeline__marker"><span class="timeline__dot"></span></div>
+          <div class="timeline__card">
+            <div class="timeline__meta">
+              <span class="timeline__type">Industrial Attachment</span>
+              <span class="timeline__period">June 2024 – August 2024</span>
+            </div>
+            <h3 class="timeline__org">Bank of Botswana</h3>
+            <p class="timeline__role">IT Support Specialist · Service Delivery Unit</p>
+            <p class="timeline__desc">
+              A short attachment inside a live banking environment, working
+              alongside the Service Delivery Unit on day-to-day IT support.
+              Most of the work was practical: keeping people connected,
+              keeping devices compliant, and logging issues clearly enough for
+              someone else to pick up.
+            </p>
+            <ul class="timeline__bullets">
+              <li>Assisted in troubleshooting network and technical issues supporting day-to-day banking operations</li>
+              <li>Performed device compliance checks against organizational policy</li>
+              <li>Supported IT security management using Microsoft Intune</li>
+              <li>Configured and managed the Man3000 Telephone Management System (TMS)</li>
+              <li>Supported users with related technical issues</li>
+            </ul>
+          </div>
+        </li>
+
+        <!-- 3. Continued Development -->
+        <li class="timeline__item timeline__item--3">
+          <div class="timeline__marker"><span class="timeline__dot"></span></div>
+          <div class="timeline__card">
+            <div class="timeline__meta">
+              <span class="timeline__type">Self-Directed Learning</span>
+              <span class="timeline__period">Ongoing</span>
+            </div>
+            <h3 class="timeline__org">Cisco Networking Academy · Coursera</h3>
+            <p class="timeline__role">Short courses in data science and data analysis</p>
+            <p class="timeline__desc">
+              Alongside my degree and the attachment, I worked through two
+              short courses to build data skills beyond the classroom. Paired
+              with SQL and Power BI from coursework, this is where the data
+              side of Information Systems started becoming something I could
+              apply, not just study.
+            </p>
+            <ul class="timeline__bullets">
+              <li>Introduction to Data Science — Cisco Networking Academy</li>
+              <li>Introduction to Data Analysis using Excel — Coursera</li>
+              <li>Applied alongside SQL, Power BI, and Excel from coursework</li>
+            </ul>
+          </div>
+        </li>
+
+        <!-- 4. Current Direction (forward-looking, not a past role) -->
+        <li class="timeline__item timeline__item--4 timeline__item--direction">
+          <div class="timeline__marker"><span class="timeline__dot"></span></div>
+          <div class="timeline__card timeline__card--direction">
+            <div class="timeline__meta">
+              <span class="timeline__type">Where I'm Headed</span>
+              <span class="timeline__period">Now</span>
+            </div>
+            <h3 class="timeline__org">Business &amp; Systems Analysis</h3>
+            <p class="timeline__role">Building on IT support and data experience</p>
+            <p class="timeline__desc">
+              The thread running through my degree, the attachment, and the
+              courses is the same: understanding a problem well enough to
+              build or support a system that solves it. That's the direction
+              I'm developing toward, with IT support and data work as the
+              practical foundation underneath.
+            </p>
+            <ul class="timeline__bullets">
+              <li>Business Analysis</li>
+              <li>Systems Analysis</li>
+              <li>IT Support</li>
+              <li>Data &amp; Business Intelligence</li>
+            </ul>
+          </div>
+        </li>
+
+      </ol>
+    </div>
+
+    <div class="experience__transition">
+      <p>Professional experience and continued learning feed directly into practical projects.</p>
+      <a href="#projects" class="btn btn--secondary" data-scroll="projects">
+        <span>See the projects</span>
+      </a>
+    </div>
+
+  </div>
+</section>
+
 <script src="script.js"></script>
 </body>
 </html>
