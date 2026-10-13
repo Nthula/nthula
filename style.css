@@ -294,3 +294,72 @@ body.proj-lock { overflow: hidden; }
   .proj-card:hover, .js .proj-card.is-visible:hover { transform: none; }
   .proj-dialog[open] { animation: none; }
 }
+
+/* ================= SKILLS SECTION (Section 04) =================
+   Classes are prefixed "skill" / "skills-" to avoid clashing with other sections. */
+
+.skill-filter {
+  border: 1px solid #CBD5E1;
+  background: #fff;
+  color: #1E293B;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+.skill-filter:hover { border-color: #0D9488; color: #0F766E; }
+.skill-filter[aria-pressed="true"] { background: #1E293B; border-color: #1E293B; color: #fff; }
+
+/* Skill tags with optional evidence marker */
+.skill-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border: 1px solid #CBD5E1;
+  background: #fff;
+  color: #1E293B;
+  border-radius: 0.375rem;
+  padding: 0.25rem 0.65rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.35;
+}
+.skill-tag[data-level]::before,
+.skill-key[data-level]::before {
+  content: "";
+  flex: none;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  box-sizing: border-box;
+}
+.skill-key { display: inline-flex; align-items: center; gap: 0.45rem; }
+[data-level="practical"]::before { background: #0D9488; }
+[data-level="developing"]::before { border: 1.5px solid #0D9488; background: transparent; }
+
+/* Links inside panels */
+.skills-links a { color: #0F766E; text-decoration: underline; text-decoration-color: rgba(13, 148, 136, 0.4); text-underline-offset: 4px; }
+.skills-links a:hover { text-decoration-color: #0F766E; }
+
+/* Panels */
+.skills-panel { transition: border-color 0.2s ease, transform 0.2s ease, opacity 0.2s ease; }
+.skills-panel[hidden] { display: none !important; }
+.skills-panel:hover { border-color: #94A3B8; }
+
+/* Entrance and filter animations (only when JavaScript has added the "js" class) */
+.js .skills-reveal { opacity: 0; transform: translateY(16px); }
+.js .skills-reveal.is-visible {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.6s ease, transform 0.6s ease, border-color 0.2s ease;
+  transition-delay: var(--delay, 0ms);
+}
+.js .skills-panel.is-visible:hover { transform: translateY(-2px); }
+.js .skills-panel.is-visible.is-filtering-out { opacity: 0; transform: scale(0.98); transition-delay: 0ms; transition-duration: 0.2s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .js .skills-reveal { opacity: 1; transform: none; }
+  .skills-panel, .skill-filter { transition: none; }
+  .skills-panel:hover, .js .skills-panel.is-visible:hover { transform: none; }
+}

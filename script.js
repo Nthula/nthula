@@ -52,6 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ---------- Smooth scrolling for internal links ---------- */
   document.querySelectorAll('a[href^="#"]').forEach((link) => {
     link.addEventListener("click", (e) => {
+      if (link.hasAttribute("data-open-case")) return; // opens a case study instead of scrolling
       const id = link.getAttribute("href");
       if (id.length < 2) return;
       const target = document.querySelector(id);
@@ -414,6 +415,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const btn = e.target.closest("[data-open]");
     if (btn) openCaseStudy(btn.dataset.open);
   });
+  // Links elsewhere on the page (e.g. Skills) can open a case study: <a href="#projects" data-open-case="project-id">
+  document.addEventListener("click", (e) => {
+    const link = e.target.closest("[data-open-case]");
+    if (!link) return;
+    e.preventDefault();
+    openCaseStudy(link.dataset.openCase);
+  });
   document.getElementById("proj-dialog-close").addEventListener("click", () => dialog.close());
   // Clicking the dimmed backdrop closes the dialog
   dialog.addEventListener("click", (e) => { if (e.target === dialog) dialog.close(); });
@@ -440,4 +448,64 @@ document.addEventListener("DOMContentLoaded", () => {
     { threshold: 0.12 }
   );
   revealEls.forEach((el) => io.observe(el));
+});
+
+/* ================= SKILLS SECTION (Section 04) ================= */
+document.addEventListener("DOMContentLoaded", () => {
+  const grid = document.getElementById("skills-grid");
+  if (!grid) return;
+
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const panels = [...grid.querySelectorAll(".skills-panel")];
+  const buttons = document.querySelectorAll(".skill-filter");
+  const liveStatus = document.getElementById("skills-status");
+
+  // ---------- Filter (a panel can belong to several groups, set in data-groups) ----------
+  function hidePanel(p) {
+    if (p.hidden) return;
+    clearTimeout(p._t);
+    if (reduced) { p.hidden = true; return; }
+    p.classList.add("is-filtering-out");
+    p._t = setTimeout(() => { p.hidden = true; }, 200);
+  }
+  function showPanel(p) {
+    clearTimeout(p._t);
+    if (!p.hidden && !p.classList.contains("is-filtering-out")) return;
+    p.hidden = false;
+    requestAnimationFrame(() => requestAnimationFrame(() => p.classList.remove("is-filtering-out")));
+  }
+  buttons.forEach((b) =>
+    b.addEventListener("click", () => {
+      const value = b.dataset.filter;
+      let shown = 0;
+      panels.forEach((p) => {
+        const match = value === "all" || p.dataset.groups.split(" ").includes(value);
+        if (match) { shown++; showPanel(p); } else { hidePanel(p); }
+      });
+      buttons.forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+      liveStatus.textContent = `Showing ${shown} of ${panels.length} skill groups`;
+    })
+  );
+
+  // ---------- Scroll-triggered entrance ----------
+  const items = document.querySelectorAll("#skills .skills-reveal");
+  if (reduced || !("IntersectionObserver" in window)) {
+    items.forEach((el) => el.classList.add("is-visible"));
+    return;
+  }
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const i = panels.indexOf(el);
+        if (i >= 0) el.style.setProperty("--delay", `${(i % 2) * 120}ms`);
+        el.classList.add("is-visible");
+        setTimeout(() => el.style.removeProperty("--delay"), 1200);
+        io.unobserve(el);
+      });
+    },
+    { threshold: 0.1 }
+  );
+  items.forEach((el) => io.observe(el));
 });
