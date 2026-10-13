@@ -530,18 +530,18 @@ const EXPERIENCE = [
   {
     id: "it-officer",
     current: true,
-    title: "IT Officer",
-    organisation: null, // PLACEHOLDER: employer name not yet confirmed (hidden until filled in)
-    department: null,
+    title: "IT Support Officer Intern",
+    organisation: "Office Of District Commissioner", // PLACEHOLDER: employer name not yet confirmed (hidden until filled in)
+    department: "Department Of Information Technology", // PLACEHOLDER: department name not yet confirmed (hidden until filled in)
     type: "Current role",
     dates: "2026 – Present", // PLACEHOLDER: replace with the verified start month
     duration: null,
     overview:
-      "I currently work as an IT Officer, developing practical experience in supporting technology and organisational IT operations.",
-    responsibilities: [], // PLACEHOLDER: add confirmed duties, e.g. [{ items: ["Duty one", "Duty two"] }]
-    tools: [],
-    skills: [],
-    contributions: [],
+      "I currently work as an IT Support Officer Intern, developing practical experience in supporting technology and organisational IT operations.",
+    responsibilities: [{ items: ["Assisting users with technical issues.", "Maintaining IT equipment and ensuring proper functionality.", "Providing technical support to users."] }], // PLACEHOLDER: add confirmed duties, e.g. [{ items: ["Duty one", "Duty two"] }]
+    tools: ["Active Directory","Cisco AnyConnect",], // PLACEHOLDER: add confirmed tools used in the role
+    skills: ["IT support and troubleshooting", "End-user assistance", "Device compliance checking", "IT security awareness", "Telecommunications system support", "Technical communication", "Service delivery", "Working within an organisational IT environment"], // PLACEHOLDER: add confirmed skills used in the role
+    contributions: [""],
     development:
       "I am continuing to build practical IT experience and a broader understanding of how technology supports organisational operations.",
     link: null
