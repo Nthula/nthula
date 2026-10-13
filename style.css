@@ -363,3 +363,94 @@ body.proj-lock { overflow: hidden; }
   .skills-panel, .skill-filter { transition: none; }
   .skills-panel:hover, .js .skills-panel.is-visible:hover { transform: none; }
 }
+
+/* ================= EXPERIENCE SECTION (Section 05) =================
+   Classes are prefixed "exp-" to avoid clashing with other sections. */
+
+.exp-list { position: relative; list-style: none; padding: 0; }
+.exp-list::before {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  width: 1px;
+  background: #CBD5E1;
+}
+.exp-item { position: relative; padding-left: 2.25rem; padding-bottom: 2rem; }
+.exp-item:last-child { padding-bottom: 0; }
+.exp-marker {
+  position: absolute;
+  left: 0;
+  top: 1.6rem;
+  width: 15px;
+  height: 15px;
+  border-radius: 9999px;
+  border: 2px solid #0D9488;
+  background: #F8FAFC;
+}
+.exp-item--current .exp-marker { background: #0D9488; }
+
+.exp-card { transition: border-color 0.2s ease, transform 0.2s ease; }
+.exp-card:hover { border-color: #94A3B8; }
+
+.exp-badge {
+  display: inline-block;
+  border: 1px solid #CBD5E1;
+  border-radius: 0.375rem;
+  padding: 0.15rem 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #1E293B;
+  background: #fff;
+}
+.exp-badge--current { border-color: #0D9488; color: #0F766E; }
+
+.exp-bullets li { position: relative; padding-left: 1.25rem; }
+.exp-bullets li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 5px;
+  height: 5px;
+  border-radius: 9999px;
+  background: #0D9488;
+}
+
+.js .exp-reveal, .js .exp-item { opacity: 0; transform: translateY(16px); }
+.js .exp-reveal.is-visible, .js .exp-item.is-visible {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition-delay: var(--delay, 0ms);
+}
+.js .exp-item.is-visible .exp-card:hover { transform: translateY(-2px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .js .exp-reveal, .js .exp-item { opacity: 1; transform: none; }
+  .exp-card { transition: none; }
+  .js .exp-item.is-visible .exp-card:hover { transform: none; }
+}
+
+/* ================= CONTACT SECTION (Section 06) =================
+   Classes are prefixed "contact-" to avoid clashing with other sections. */
+
+.contact-link { transition: border-color 0.2s ease, background-color 0.2s ease; }
+.contact-link:hover { border-color: #0D9488; background: #fff; }
+
+#copy-status.is-success { color: #0F766E; }
+#copy-status.is-error { color: #0F172A; }
+
+.js .contact-reveal { opacity: 0; transform: translateY(16px); }
+.js .contact-reveal.is-visible {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition-delay: var(--delay, 0ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .contact-reveal { opacity: 1; transform: none; }
+  .contact-link { transition: none; }
+}

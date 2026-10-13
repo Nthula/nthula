@@ -509,3 +509,265 @@ document.addEventListener("DOMContentLoaded", () => {
   );
   items.forEach((el) => io.observe(el));
 });
+
+/* ================= EXPERIENCE SECTION (Section 05) =================
+
+   HOW TO UPDATE: edit the EXPERIENCE array below. Any field that is empty, null, or [] is simply not
+   shown on the page, so nothing unconfirmed appears publicly.
+
+   CURRENT ROLE - fill these in once verified:
+   - organisation: the employer's name (currently null, so it is hidden)
+   - dates: replace "2026 – Present" with the exact month once checked against your records, e.g. "May 2026 – Present"
+   - responsibilities: add only duties you actually perform now. Suggested areas to confirm (do not copy
+     any you do not do): hardware and software troubleshooting, end-user technical support, network
+     connectivity support, IT equipment and device management, software installation and configuration,
+     technical issue documentation, IT asset administration, user account or access support.
+   - tools / skills: add only items supported by those confirmed duties.
+   - contributions: optional. Each is { problem, action, outcome }. Only add real ones, with no invented figures.
+   - link: optional { label, href } to a related project, only if the connection is genuine.
+*/
+const EXPERIENCE = [
+  {
+    id: "it-officer",
+    current: true,
+    title: "IT Officer",
+    organisation: null, // PLACEHOLDER: employer name not yet confirmed (hidden until filled in)
+    department: null,
+    type: "Current role",
+    dates: "2026 – Present", // PLACEHOLDER: replace with the verified start month
+    duration: null,
+    overview:
+      "I currently work as an IT Officer, developing practical experience in supporting technology and organisational IT operations.",
+    responsibilities: [], // PLACEHOLDER: add confirmed duties, e.g. [{ items: ["Duty one", "Duty two"] }]
+    tools: [],
+    skills: [],
+    contributions: [],
+    development:
+      "I am continuing to build practical IT experience and a broader understanding of how technology supports organisational operations.",
+    link: null
+  },
+  {
+    id: "bob-attachment",
+    current: false,
+    title: "ICT Industrial Attachment",
+    organisation: "Bank of Botswana",
+    department: "ICT",
+    unit: null, // PLACEHOLDER: official unit name (Collaboration Unit / Mobile Device Management and Collaboration Unit) not yet confirmed
+    type: "Industrial attachment",
+    dates: null, // PLACEHOLDER: exact start and end dates not provided, so none are shown
+    duration: "Two-month industrial attachment, University of Botswana winter semester",
+    overview:
+      "I completed a two-month industrial attachment in the ICT function at the Bank of Botswana as part of my studies. It gave me supervised exposure to IT support, service delivery, device compliance, telecommunications systems, and technical assistance. This was an attachment, not employment at the Bank.",
+    responsibilities: [
+      {
+        group: "IT troubleshooting and operational support",
+        items: [
+          "Assisted with troubleshooting network and technical issues to support day-to-day banking operations.",
+          "Supported users with relevant technical issues."
+        ]
+      },
+      {
+        group: "Device compliance and IT security",
+        items: [
+          "Performed device compliance checks and supported IT security management using Microsoft Intune, to help ensure devices met organisational policies."
+        ]
+      },
+      {
+        group: "Telecommunications systems",
+        items: [
+          "Assisted with configuring and managing telecommunications systems using the Man3000 Telephone Management System.",
+          "Supported users with related telecommunications issues."
+        ]
+      },
+      {
+        group: "Technical and event support",
+        items: ["Assisted with event setup and technical equipment."]
+      }
+    ],
+    tools: ["Microsoft Intune", "Man3000 Telephone Management System"],
+    skills: [
+      "IT support and troubleshooting",
+      "End-user assistance",
+      "Device compliance checking",
+      "IT security awareness",
+      "Telecommunications system support",
+      "Technical communication",
+      "Service delivery",
+      "Working within an organisational IT environment"
+    ],
+    contributions: [],
+    development: null,
+    link: null
+  }
+];
+
+document.addEventListener("DOMContentLoaded", () => {
+  const list = document.getElementById("exp-list");
+  if (!list) return;
+
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const esc = (s) =>
+    String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const has = (v) => (Array.isArray(v) ? v.length > 0 : Boolean(v));
+  const heading = (t) => `<h4 class="mt-6 text-sm font-semibold text-slate-brand">${esc(t)}</h4>`;
+  const tags = (arr) => `<ul class="mt-2 flex flex-wrap gap-2">${arr.map((t) => `<li class="skill-tag">${esc(t)}</li>`).join("")}</ul>`;
+
+  function entryHtml(e) {
+    const orgLine = [e.organisation, e.department].filter(Boolean).map(esc).join(", ");
+    const when = e.dates || e.duration;
+
+    const resp = has(e.responsibilities)
+      ? heading("Key responsibilities") +
+        e.responsibilities
+          .map(
+            (g) =>
+              (g.group ? `<p class="mt-3 text-sm font-medium text-ink">${esc(g.group)}</p>` : "") +
+              `<ul class="exp-bullets ${g.group ? "mt-1.5" : "mt-3"} space-y-1.5 text-sm leading-relaxed text-muted">${g.items.map((i) => `<li>${esc(i)}</li>`).join("")}</ul>`
+          )
+          .join("")
+      : "";
+
+    const contrib = has(e.contributions)
+      ? heading("Contributions") +
+        e.contributions
+          .map(
+            (c) =>
+              `<dl class="mt-3 space-y-1 text-sm leading-relaxed text-muted">` +
+              [["Problem", c.problem], ["Action", c.action], ["Outcome", c.outcome]]
+                .filter(([, v]) => v)
+                .map(([k, v]) => `<div><dt class="inline font-medium text-ink">${k}: </dt><dd class="inline">${esc(v)}</dd></div>`)
+                .join("") +
+              `</dl>`
+          )
+          .join("")
+      : "";
+
+    const link =
+      e.link && e.link.href && e.link.label
+        ? `<p class="mt-6 text-sm"><a class="text-teal-dark underline decoration-teal-brand/40 underline-offset-4 hover:decoration-teal-dark" href="${esc(e.link.href)}">${esc(e.link.label)}</a></p>`
+        : "";
+
+    return `
+      <span class="exp-marker" aria-hidden="true"></span>
+      <article class="exp-card rounded-xl border border-slate-200 bg-white p-6 sm:p-7">
+        <div class="flex flex-wrap items-center gap-x-3 gap-y-2">
+          <span class="exp-badge ${e.current ? "exp-badge--current" : ""}">${esc(e.type)}</span>
+          ${when ? `<span class="text-sm font-medium text-teal-dark">${esc(when)}</span>` : ""}
+        </div>
+        <h3 class="mt-3 text-xl font-semibold text-slate-brand">${esc(e.title)}</h3>
+        ${orgLine ? `<p class="mt-1 text-base text-ink">${orgLine}</p>` : ""}
+        ${e.overview ? `<p class="mt-4 text-sm leading-relaxed text-muted sm:text-base">${esc(e.overview)}</p>` : ""}
+        ${resp}
+        ${has(e.tools) ? heading("Tools used") + tags(e.tools) : ""}
+        ${has(e.skills) ? heading("Skills demonstrated") + tags(e.skills) : ""}
+        ${contrib}
+        ${e.development ? heading("Professional development") + `<p class="mt-2 text-sm leading-relaxed text-muted">${esc(e.development)}</p>` : ""}
+        ${link}
+      </article>`;
+  }
+
+  // Replace the no-JavaScript fallback with the generated entries
+  list.innerHTML = "";
+  EXPERIENCE.forEach((e) => {
+    const li = document.createElement("li");
+    li.className = `exp-item${e.current ? " exp-item--current" : ""}`;
+    li.innerHTML = entryHtml(e);
+    list.appendChild(li);
+  });
+
+  // ---------- Scroll-triggered entrance ----------
+  const items = [...document.querySelectorAll("#experience .exp-reveal, #experience .exp-item")];
+  if (reduced || !("IntersectionObserver" in window)) {
+    items.forEach((el) => el.classList.add("is-visible"));
+    return;
+  }
+  const entries = [...list.querySelectorAll(".exp-item")];
+  const io = new IntersectionObserver(
+    (obs) => {
+      obs.forEach((o) => {
+        if (!o.isIntersecting) return;
+        const el = o.target;
+        const i = entries.indexOf(el);
+        if (i >= 0) el.style.setProperty("--delay", `${i * 150}ms`);
+        el.classList.add("is-visible");
+        setTimeout(() => el.style.removeProperty("--delay"), 1200);
+        io.unobserve(el);
+      });
+    },
+    { threshold: 0.1 }
+  );
+  items.forEach((el) => io.observe(el));
+});
+
+/* ================= CONTACT SECTION (Section 06) ================= */
+document.addEventListener("DOMContentLoaded", () => {
+  const section = document.getElementById("contact");
+  if (!section) return;
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // ---------- LinkedIn guard: never show a placeholder link ----------
+  const linkedinItem = document.getElementById("contact-linkedin");
+  if (linkedinItem) {
+    const a = linkedinItem.querySelector("a");
+    const real = a && /^https:\/\/(www\.)?linkedin\.com\//.test(a.href) && !a.href.includes("YOUR-PROFILE-HERE");
+    if (!real) linkedinItem.hidden = true;
+  }
+
+  // ---------- Copy email ----------
+  const copyBtn = document.getElementById("copy-email");
+  const status = document.getElementById("copy-status");
+  const emailText = document.getElementById("contact-email-text");
+  let clearTimer;
+
+  function say(message, kind) {
+    status.textContent = message;
+    status.className = `mt-3 min-h-[1.25rem] text-sm ${kind === "success" ? "is-success" : kind === "error" ? "is-error" : "text-muted"}`;
+    clearTimeout(clearTimer);
+    clearTimer = setTimeout(() => { status.textContent = ""; status.className = "mt-3 min-h-[1.25rem] text-sm text-muted"; }, 6000);
+  }
+
+  // If copying is not possible, highlight the visible address so it can be copied by hand
+  function fallback() {
+    if (emailText && window.getSelection) {
+      const range = document.createRange();
+      range.selectNodeContents(emailText);
+      const sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+    }
+    say("Couldn't copy automatically. The address is selected above, or use the Email Me button.", "error");
+  }
+
+  if (copyBtn) {
+    copyBtn.addEventListener("click", async () => {
+      const email = copyBtn.dataset.email;
+      if (!navigator.clipboard || !window.isSecureContext) { fallback(); return; }
+      try {
+        await navigator.clipboard.writeText(email);
+        say("Email copied", "success"); // only after the copy has actually succeeded
+      } catch (err) {
+        fallback();
+      }
+    });
+  }
+
+  // ---------- Scroll-triggered entrance ----------
+  const items = section.querySelectorAll(".contact-reveal");
+  if (reduced || !("IntersectionObserver" in window)) {
+    items.forEach((el) => el.classList.add("is-visible"));
+    return;
+  }
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        el.classList.add("is-visible");
+        setTimeout(() => el.style.removeProperty("--delay"), 1200);
+        io.unobserve(el);
+      });
+    },
+    { threshold: 0.15 }
+  );
+  items.forEach((el) => io.observe(el));
+});
