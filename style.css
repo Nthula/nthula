@@ -95,3 +95,202 @@ html { scroll-padding-top: 5rem; }
   .btn, .focus-card, .nav-link { transition: none; }
   .btn:hover, .focus-card:hover { transform: none; }
 }
+
+/* ================= ABOUT SECTION (Section 02) =================
+   Classes are prefixed "about-" to avoid clashing with the Home section. */
+
+/* Timeline */
+.about-timeline {
+  position: relative;
+  list-style: none;
+  padding: 0;
+  margin-left: 0;
+}
+.about-timeline::before {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 0.6rem;
+  bottom: 0.6rem;
+  width: 1px;
+  background: #CBD5E1;
+}
+.about-milestone {
+  position: relative;
+  padding-left: 2.25rem;
+  padding-bottom: 2.5rem;
+}
+.about-milestone:last-child { padding-bottom: 0; }
+.about-marker {
+  position: absolute;
+  left: 0;
+  top: 0.45rem;
+  width: 15px;
+  height: 15px;
+  border-radius: 9999px;
+  border: 2px solid #0D9488;
+  background: #fff;
+}
+
+/* Goals list: small teal markers, readable on mobile */
+.about-goals li {
+  position: relative;
+  padding-left: 1.5rem;
+}
+.about-goals li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: #0D9488;
+}
+
+/* Approach cards */
+.about-card { transition: border-color 0.2s ease, transform 0.2s ease; }
+.about-card:hover { border-color: #CBD5E1; transform: translateY(-2px); }
+
+/* Reveal animations: only active when JavaScript has added the "js" class */
+.js .about-reveal,
+.js .about-milestone {
+  opacity: 0;
+  transform: translateY(16px);
+}
+.js .about-reveal.is-visible,
+.js .about-milestone.is-visible {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.6s ease, transform 0.6s ease, border-color 0.2s ease;
+  transition-delay: var(--delay, 0ms);
+}
+.js .about-card.is-visible:hover { transform: translateY(-2px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .js .about-reveal,
+  .js .about-milestone { opacity: 1; transform: none; }
+  .about-card { transition: none; }
+  .about-card:hover { transform: none; }
+}
+
+/* About photo: the "ON" fallback sits behind the image and shows if the file is missing */
+.about-photo {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  background: #E2E8F0;
+  overflow: hidden;
+}
+.about-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+.about-photo img.is-missing { display: none; }
+.about-photo-fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #1E293B;
+}
+
+/* ================= PROJECTS SECTION (Section 03) =================
+   Classes are prefixed "proj-" to avoid clashing with other sections. */
+
+/* Filters */
+.proj-filter {
+  border: 1px solid #CBD5E1;
+  background: #fff;
+  color: #1E293B;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+.proj-filter:hover { border-color: #0D9488; color: #0F766E; }
+.proj-filter[aria-pressed="true"] { background: #1E293B; border-color: #1E293B; color: #fff; }
+
+/* Cards */
+.proj-card { transition: border-color 0.2s ease, transform 0.2s ease, opacity 0.2s ease; }
+.proj-card[hidden] { display: none !important; }
+.proj-card:hover { border-color: #94A3B8; }
+
+/* Preview area: consistent 16:9, images never stretch */
+.proj-preview {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #F1F5F9;
+  border-bottom: 1px solid #E2E8F0;
+  overflow: hidden;
+}
+.proj-preview img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.proj-preview-empty {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: #64748B;
+}
+
+/* Status badges */
+.proj-status {
+  display: inline-block;
+  border-radius: 0.375rem;
+  padding: 0.15rem 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid #CBD5E1;
+  color: #1E293B;
+  background: #fff;
+}
+.proj-status--progress { border-color: #0D9488; color: #0F766E; }
+.proj-status--planned { border-style: dashed; color: #64748B; }
+
+/* Dialog */
+.proj-dialog {
+  width: min(46rem, calc(100% - 2rem));
+  max-height: min(90vh, 52rem);
+  padding: 0;
+  border: 1px solid #CBD5E1;
+  border-radius: 0.75rem;
+  background: #fff;
+  color: #0F172A;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.18);
+}
+.proj-dialog[open] { display: flex; flex-direction: column; animation: projFade 0.2s ease; }
+.proj-dialog::backdrop { background: rgba(15, 23, 42, 0.55); }
+.proj-dialog-body { overflow-y: auto; }
+.proj-sec + .proj-sec { margin-top: 1.75rem; }
+@keyframes projFade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+body.proj-lock { overflow: hidden; }
+
+/* Reveal and filter animations (active only when JavaScript has added the "js" class) */
+.js .proj-reveal { opacity: 0; transform: translateY(16px); }
+.js .proj-reveal.is-visible {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.6s ease, transform 0.6s ease, border-color 0.2s ease;
+  transition-delay: var(--delay, 0ms);
+}
+.js .proj-card.is-visible.is-filtering-out { opacity: 0; transform: scale(0.98); transition-delay: 0ms; transition-duration: 0.2s; }
+.js .proj-card.is-visible:hover { transform: translateY(-2px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .js .proj-reveal { opacity: 1; transform: none; }
+  .proj-card, .proj-filter { transition: none; }
+  .proj-card:hover, .js .proj-card.is-visible:hover { transform: none; }
+  .proj-dialog[open] { animation: none; }
+}
